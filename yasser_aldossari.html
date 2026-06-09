@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تلاوات الشيخ ياسر الدوسري</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <a href="index.html" class="nav-back">
+    <i class="fas fa-arrow-right"></i>
+    الرئيسية
+  </a>
+  <span class="nav-title">﴿ بوابة القرآن الكريم ﴾</span>
+  <div class="theme-pills nav-theme-pills" id="navThemePills">
+    <button class="theme-pill active" data-t="sapphire" title="ياقوتي"></button>
+    <button class="theme-pill" data-t="emerald"  title="زمردي"></button>
+    <button class="theme-pill" data-t="amber"    title="عنبري"></button>
+    <button class="theme-pill" data-t="rose"     title="وردي"></button>
+    <button class="theme-pill" data-t="pearl"    title="لؤلؤي"></button>
+  </div>
+</nav>
+
+<div class="reader-wrapper">
+
+  <!-- Reader Hero -->
+  <div class="reader-hero fade-in">
+    <img src="https://i.imgur.com/4bN1S9e.png"
+         onerror="this.src='https://ui-avatars.com/api/?name=%D9%8A%D8%A7%D8%B3%D8%B1&background=1e40af&color=fff&size=120'"
+         alt="ياسر الدوسري" class="reader-hero-img">
+    <div class="reader-hero-info">
+      <h1>الشيخ ياسر الدوسري</h1>
+      <p>قارئ قرآن مشهور من المملكة العربية السعودية، وعضو هيئة التدريس بجامعة الملك سعود، وهو خطيب وإمام المسجد الحرام منذ عام 1441هـ. يتميز بنبرته العذبة الخاشعة التي تأسر قلوب الملايين حول العالم.</p>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="reader-content">
+
+    <!-- Left: Surah List Panel -->
+    <aside class="surah-panel fade-in">
+      <div class="surah-panel-header">
+        <div class="surah-search-wrap">
+          <input type="search" id="surahSearch" placeholder="ابحث بالاسم أو الرقم…" autocomplete="off">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <ul class="surah-list-ul" id="surahList"></ul>
+    </aside>
+
+    <!-- Right: Audio + Flipbook -->
+    <div class="right-panel fade-in">
+
+      <!-- Custom Audio Card -->
+      <div class="audio-card" id="audioCard">
+        <div class="now-playing" id="nowPlayingText">اختر سورة للاستماع</div>
+        <div class="audio-progress-wrap">
+          <input type="range" class="audio-progress" id="audioProgress" min="0" max="100" value="0">
+          <div class="audio-time">
+            <span id="audioTime">0:00</span>
+            <span id="audioDuration">0:00</span>
+          </div>
+        </div>
+        <div class="audio-controls">
+          <button class="ctrl-btn" id="skipBackBtn" title="10- ثانية"><i class="fas fa-rotate-left"></i> <small style="font-size:.6rem">10</small></button>
+          <button class="ctrl-btn play-pause-btn" id="playPauseBtn" title="تشغيل / إيقاف">
+            <i class="fas fa-play"></i>
+          </button>
+          <button class="ctrl-btn" id="skipFwdBtn" title="10+ ثانية"><i class="fas fa-rotate-right"></i> <small style="font-size:.6rem">10</small></button>
+        </div>
+        <div class="volume-wrap">
+          <i class="fas fa-volume-high"></i>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="90">
+          <i class="fas fa-volume-off"></i>
+        </div>
+      </div>
+
+      <!-- Flip Book -->
+      <div class="flipbook-container">
+
+        <!-- Idle Message -->
+        <div class="flipbook-idle-msg" id="flipbookIdle">
+          <i class="fas fa-book-open"></i>
+          <strong>اختر سورة من القائمة</strong>
+          ستظهر آياتها الكريمة هنا في كتاب تفاعلي<br>
+          يمكنك تقليب الصفحات باليد أو بمفاتيح الأسهم
+        </div>
+
+        <!-- Book Outer -->
+        <div class="book-outer" id="bookOuter">
+          <div class="book-spine"></div>
+          <div class="book-base" id="bookBase">
+            <!-- Bismillah -->
+            <div class="bismillah-line" id="bismillahLine">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <!-- Surah title -->
+            <div class="surah-title-in-book" id="surahTitleInBook"></div>
+            <!-- Verses -->
+            <div class="verse-text" id="verseText"></div>
+            <!-- Corner handle -->
+            <div class="page-corner-handle" id="pageCornerHandle" title="اسحب لتقليب الصفحة"></div>
+          </div>
+        </div>
+
+        <!-- Page Nav -->
+        <div class="page-nav">
+          <button class="page-btn" id="nextPageBtn" disabled>
+            <i class="fas fa-chevron-right"></i> التالية
+          </button>
+          <span class="page-indicator" id="pageIndicator"></span>
+          <button class="page-btn" id="prevPageBtn" disabled>
+            السابقة <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+      </div><!-- /flipbook-container -->
+    </div><!-- /right-panel -->
+  </div><!-- /reader-content -->
+</div><!-- /reader-wrapper -->
+
+<!-- Flip layer -->
+<div class="page-flip-layer" id="pageFlipLayer"></div>
+
+<!-- Audio Links -->
+<script>
+const audioLinks = [];
+for (let i = 1; i <= 114; i++) {
+  const n = i.toString().padStart(3, '0');
+  audioLinks.push(`https://server11.mp3quran.net/yasser/${n}.mp3`);
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تلاوات الشيخ خالد الجليل</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-back">
+    <i class="fas fa-arrow-right"></i>
+    الرئيسية
+  </a>
+  <span class="nav-title">﴿ بوابة القرآن الكريم ﴾</span>
+  <div class="theme-pills nav-theme-pills" id="navThemePills">
+    <button class="theme-pill active" data-t="sapphire" title="ياقوتي"></button>
+    <button class="theme-pill" data-t="emerald"  title="زمردي"></button>
+    <button class="theme-pill" data-t="amber"    title="عنبري"></button>
+    <button class="theme-pill" data-t="rose"     title="وردي"></button>
+    <button class="theme-pill" data-t="pearl"    title="لؤلؤي"></button>
+  </div>
+</nav>
+
+<div class="reader-wrapper">
+
+  <div class="reader-hero fade-in">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyCcvn4sW3FvfqG5efaPiqhz4qtA9o4e5ONA&usqp=CAU"
+         onerror="this.src='https://ui-avatars.com/api/?name=%D8%AE%D8%A7%D9%84%D8%AF%20%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84&background=1e40af&color=fff&size=120'"
+         alt="خالد الجليل" class="reader-hero-img">
+    <div class="reader-hero-info">
+      <h1>الشيخ خالد الجليل</h1>
+      <p>الشيخ خالد بن فهد الجليل، ولد في الرياض عام 1963م. يتميز بصوته الخاشع وأدائه المؤثر العذب، مما أكسبه شهرة واسعة ليصبح أحد أشهر قراء العالم الإسلامي.</p>
+    </div>
+  </div>
+
+  <div class="reader-content">
+
+    <aside class="surah-panel fade-in">
+      <div class="surah-panel-header">
+        <div class="surah-search-wrap">
+          <input type="search" id="surahSearch" placeholder="ابحث بالاسم أو الرقم…" autocomplete="off">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <ul class="surah-list-ul" id="surahList"></ul>
+    </aside>
+
+    <div class="right-panel fade-in">
+
+      <div class="audio-card" id="audioCard">
+        <div class="now-playing" id="nowPlayingText">اختر سورة للاستماع</div>
+        <div class="audio-progress-wrap">
+          <input type="range" class="audio-progress" id="audioProgress" min="0" max="100" value="0">
+          <div class="audio-time">
+            <span id="audioTime">0:00</span>
+            <span id="audioDuration">0:00</span>
+          </div>
+        </div>
+        <div class="audio-controls">
+          <button class="ctrl-btn" id="skipBackBtn" title="10- ثانية"><i class="fas fa-rotate-left"></i> <small style="font-size:.6rem">10</small></button>
+          <button class="ctrl-btn play-pause-btn" id="playPauseBtn" title="تشغيل / إيقاف">
+            <i class="fas fa-play"></i>
+          </button>
+          <button class="ctrl-btn" id="skipFwdBtn" title="10+ ثانية"><i class="fas fa-rotate-right"></i> <small style="font-size:.6rem">10</small></button>
+        </div>
+        <div class="volume-wrap">
+          <i class="fas fa-volume-high"></i>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="90">
+          <i class="fas fa-volume-off"></i>
+        </div>
+      </div>
+
+      <div class="flipbook-container">
+
+        <div class="flipbook-idle-msg" id="flipbookIdle">
+          <i class="fas fa-book-open"></i>
+          <strong>اختر سورة من القائمة</strong>
+          ستظهر آياتها الكريمة هنا في كتاب تفاعلي<br>
+          يمكنك تقليب الصفحات باليد أو بمفاتيح الأسهم
+        </div>
+
+        <div class="book-outer" id="bookOuter">
+          <div class="book-spine"></div>
+          <div class="book-base" id="bookBase">
+            <div class="bismillah-line" id="bismillahLine">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <div class="surah-title-in-book" id="surahTitleInBook"></div>
+            <div class="verse-text" id="verseText"></div>
+            <div class="page-corner-handle" id="pageCornerHandle" title="اسحب لتقليب الصفحة"></div>
+          </div>
+        </div>
+
+        <div class="page-nav">
+          <button class="page-btn" id="nextPageBtn" disabled>
+            <i class="fas fa-chevron-right"></i> التالية
+          </button>
+          <span class="page-indicator" id="pageIndicator"></span>
+          <button class="page-btn" id="prevPageBtn" disabled>
+            السابقة <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-flip-layer" id="pageFlipLayer"></div>
+
+<script>
+const audioLinks = [];
+for (let i = 1; i <= 114; i++) {
+  const n = i.toString().padStart(3, '0');
+  audioLinks.push(`https://server10.mp3quran.net/jleel/${n}.mp3`);
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>
